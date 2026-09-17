@@ -93,13 +93,12 @@ tries a request gets, and `sleep` to make the waits instant in a test.
 
 ## Verification status
 
-The models here match the OpenAPI schema and the per-route response examples
-match13 publishes at <https://match13.com/docs/api>, and `test/fixtures/` holds
-those examples verbatim. **Only the 401 fixture was captured off the live API**,
-because every data route answers 401 without an account key and this repository
-holds none. Until a live 200 has gone through these models they are unproven
-against the running service, not proven working. Refresh the fixtures with the
-`curl` recorded in the test file once a key exists.
+The fixtures under `test/fixtures/` are bodies captured off the live API, and
+the tests pin real values out of them rather than asserting `isNotNull`. All
+nine routes were run end to end through this client against the live API on
+2026-09-17, every one answering 200 and decoding. The `curl` that produced each
+fixture is recorded in the test file; four of them were trimmed to a few rows
+to keep the files small, and every row that remains is verbatim.
 
 ## License
 

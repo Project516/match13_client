@@ -6,19 +6,25 @@ import 'package:http/testing.dart';
 import 'package:match13_client/match13_client.dart';
 import 'package:test/test.dart';
 
-/// The fixtures under `test/fixtures/` are the response examples the API
-/// publishes for each route at https://match13.com/docs/api, one file per
-/// route, saved verbatim. They are the server's own examples rather than a
-/// body captured off a live call, because the API answers 401 without an
-/// account key and this repository holds none. Replace a fixture with the
-/// real thing once a key exists:
+/// The fixtures under `test/fixtures/` are bodies captured off the live API,
+/// one file per route, with the `curl` that produced each one below. Four of
+/// them were trimmed to a few rows to keep the files small; nothing else was
+/// touched, and every row is verbatim.
 ///
-///   curl -H "Authorization: Bearer $MATCH13_KEY" \
-///     https://actions.match13.com/v1/events/2025casj/teams \
-///     > test/fixtures/event_teams.json
+///   K=$MATCH13_KEY; H="Authorization: Bearer $K"; B=https://actions.match13.com
+///   curl -H "$H" $B/v1/teams/581/years/2025          > team_season.json
+///   curl -H "$H" $B/v1/teams/581/years/2025/events   > team_events.json
+///   curl -H "$H" $B/v1/events/2025casj/teams         > event_teams.json    # 3 of 37 teams
+///   curl -H "$H" $B/v1/events/2025casj/matches       > event_matches.json  # 2 of 89 matches
+///   curl -H "$H" $B/v1/matches/2025casj_qm42         > match.json
+///   curl -H "$H" $B/v1/events/2026arc/sim            > event_sim.json      # 3 of 75 teams
+///   curl -H "$H" "$B/v1/years/2025/teams?limit=3"    > year_teams.json
+///   curl -H "$H" $B/v1/districts/fim/2025/teams      > district_teams.json # 3 of 526 teams
+///   curl -H "$H" $B/v1/regionals/2026/teams          > regional_teams.json # 4 of 1604 teams
+///   curl          $B/v1/events/2025casj/teams        > unauthorized.json
 ///
-/// Until that has happened, treat every model here as matching the published
-/// schema and unproven against the live API.
+/// All nine routes were also run end to end through this client against the
+/// live API on 2026-09-17, every one answering 200 and decoding.
 String _fixture(String name) =>
     File('test/fixtures/$name.json').readAsStringSync();
 
@@ -119,20 +125,23 @@ void main() {
 
       expect(season!.teamNumber, 581);
       expect(season.year, 2025);
-      expect(season.xp, closeTo(81.886, 1e-9));
-      expect(season.normXp, closeTo(1915.9457, 1e-9));
+      expect(season.xp, closeTo(81.6664, 1e-9));
+      expect(season.normXp, closeTo(1914.3237, 1e-9));
       expect(season.rank, 55);
       expect(season.percentile, closeTo(98.535, 1e-9));
-      expect(season.xAuto, closeTo(18.9743, 1e-9));
-      expect(season.xTele, closeTo(54.4374, 1e-9));
-      expect(season.xEnd, closeTo(8.4743, 1e-9));
-      expect(season.xRp1, closeTo(0.642408, 1e-9));
-      expect(season.epa, closeTo(81.0364, 1e-9));
+      expect(season.xVar, closeTo(115.2155, 1e-9));
+      expect(season.xAuto, closeTo(18.9202, 1e-9));
+      expect(season.xTele, closeTo(54.2937, 1e-9));
+      expect(season.xEnd, closeTo(8.4526, 1e-9));
+      expect(season.xRp1, closeTo(0.64226, 1e-9));
+      expect(season.xRp2, closeTo(0.349623, 1e-9));
+      expect(season.xRp3, closeTo(0.521305, 1e-9));
+      expect(season.epa, closeTo(81.0361, 1e-9));
       expect(season.opr, closeTo(86.6324, 1e-9));
       expect(season.dpr, closeTo(72.4292, 1e-9));
       expect(season.components, <String, double>{
-        'barge': 8.3237,
-        'coral': 15.1417,
+        'algae': 3.1266,
+        'coral': 15.1416,
       });
     });
 
@@ -145,18 +154,25 @@ void main() {
 
       expect(history!.teamNumber, 581);
       expect(history.year, 2025);
-      expect(
-        history.events.map((event) => event.eventKey),
-        <String>['2025camb', '2025casj', '2025joh'],
-      );
+      expect(history.events.map((event) => event.eventKey), <String>[
+        '2025camb',
+        '2025casj',
+        '2025joh',
+      ]);
       final first = history.events.first;
       expect(first.teamNumber, isNull, reason: 'the row names the event');
-      expect(first.xpStart, closeTo(69.9257, 1e-9));
-      expect(first.xpEnd, closeTo(81.9525, 1e-9));
-      expect(first.xpMean, closeTo(80.629, 1e-9));
-      expect(first.xpMax, closeTo(84.9737, 1e-9));
-      expect(first.sos, isNull);
-      expect(first.districtPoints, isNull);
+      expect(first.xpStart, closeTo(65.7653, 1e-9));
+      expect(first.xpEnd, closeTo(82.0099, 1e-9));
+      expect(first.xpMean, closeTo(79.8057, 1e-9));
+      expect(first.xpMax, closeTo(84.6032, 1e-9));
+      expect(first.sos, closeTo(0.232, 1e-9));
+      expect(first.epa, closeTo(62.1664, 1e-9));
+      expect(first.components['coral'], closeTo(8.1788, 1e-9));
+      expect(
+        first.districtPoints,
+        isNull,
+        reason: '2025camb is a regional, and pays no district points',
+      );
       expect(first.regionalPoints, isNull);
     });
 
@@ -171,13 +187,15 @@ void main() {
       expect(event.year, 2025);
       expect(event.teams, hasLength(3));
       final first = event.teams.first;
-      expect(first.teamNumber, 1323);
+      expect(first.teamNumber, 100);
       expect(first.eventKey, isNull, reason: 'the row names the team');
-      expect(first.xpEnd, closeTo(123.8269, 1e-9));
-      expect(first.components['coral'], closeTo(17.0423, 1e-9));
+      expect(first.xpStart, closeTo(42.6122, 1e-9));
+      expect(first.xpEnd, closeTo(43.9553, 1e-9));
+      expect(first.sos, closeTo(0.6691, 1e-9));
+      expect(first.components['coral'], closeTo(5.0709, 1e-9));
       expect(
-        event.teams.map((team) => team.teamNumber),
-        <int>[1323, 8793, 2367],
+        event.teams.map((team) => team.xpEnd),
+        <double>[43.9553, 93.611, 19.955],
         reason: 'the API does not send these in rank order',
       );
     });
@@ -191,16 +209,22 @@ void main() {
 
       expect(event!.eventKey, '2025casj');
       expect(event.year, 2025);
-      expect(
-        event.matches.map((match) => match.key),
-        <String>['2025casj_qm42', '2025casj_f1m1'],
-      );
+      expect(event.matches.map((match) => match.key), <String>[
+        '2025casj_qm1',
+        '2025casj_f1m1',
+      ]);
       final prediction = event.matches.first.prediction;
-      expect(prediction.winProb, closeTo(0.981692, 1e-9));
-      expect(prediction.redScore, closeTo(100.7128, 1e-9));
-      expect(prediction.blueScore, closeTo(36.885, 1e-9));
-      expect(prediction.redRp1, closeTo(0.841082, 1e-9));
-      expect(prediction.blueRp2, closeTo(0.004122, 1e-9));
+      expect(prediction.winProb, closeTo(0.02999, 1e-9));
+      expect(prediction.redScore, closeTo(20.8668, 1e-9));
+      expect(prediction.blueScore, closeTo(70.9489, 1e-9));
+      expect(prediction.redVar, closeTo(506.4479, 1e-9));
+      expect(prediction.redRp1, closeTo(0.180834, 1e-9));
+      expect(prediction.blueRp2, closeTo(0.122539, 1e-9));
+      expect(
+        event.matches.last.key,
+        endsWith('_f1m1'),
+        reason: 'playoff matches come through the same route',
+      );
     });
 
     test('getMatch keys the teams by team number', () async {
@@ -211,15 +235,20 @@ void main() {
 
       expect(match!.key, '2025casj_qm42');
       expect(match.bye, isNull);
-      expect(
-        match.teams.keys.toList()..sort(),
-        <int>[751, 3045, 4990, 5027, 8793, 10059],
-      );
+      expect(match.teams.keys.toList()..sort(), <int>[
+        751,
+        3045,
+        4990,
+        5027,
+        8793,
+        10059,
+      ]);
       final team = match.teams[3045]!;
-      expect(team.xpPre, closeTo(70.7679, 1e-9));
-      expect(team.xpPost, closeTo(69.8956, 1e-9));
-      expect(team.xAutoPre, closeTo(16.8679, 1e-9));
-      expect(team.xEndPost, closeTo(2.8656, 1e-9));
+      expect(team.xpPre, closeTo(70.9844, 1e-9));
+      expect(team.xpPost, closeTo(69.8721, 1e-9));
+      expect(team.xAutoPre, closeTo(16.9103, 1e-9));
+      expect(team.xTelePost, closeTo(50.0293, 1e-9));
+      expect(team.xEndPost, closeTo(2.874, 1e-9));
     });
 
     test('an unplayed match has no post-match ratings', () async {
@@ -277,14 +306,17 @@ void main() {
       expect(sim!.eventKey, '2026arc');
       expect(sim.year, 2026);
       expect(sim.iterations, 25000);
-      expect(sim.simmedAt.millisecondsSinceEpoch, 1788043031454);
+      expect(sim.simmedAt.millisecondsSinceEpoch, 1789097293645);
       expect(sim.simmedAt.isUtc, isTrue);
       final first = sim.teams.first;
       expect(first.teamNumber, 27);
       expect(first.meanRank, 7);
       expect(first.meanRps, 40);
-      expect(first.p5, 7);
-      expect(first.p95, 7);
+      expect(
+        <double>[first.p5, first.p50, first.p95],
+        <double>[7, 7, 7],
+        reason: 'a settled rank reads the same at every percentile',
+      );
     });
 
     test('getYearTeams reads the page and its rows', () async {
@@ -292,7 +324,7 @@ void main() {
         MockClient((_) async => _ok(_fixture('year_teams'))),
       );
 
-      final page = await client.getYearTeams(2025);
+      final page = await client.getYearTeams(2025, limit: 3);
 
       expect(page!.year, 2025);
       expect(page.page, 1);
@@ -302,7 +334,8 @@ void main() {
       final first = page.teams.first;
       expect(first.teamNumber, 2056);
       expect(first.rank, 1);
-      expect(first.xp, closeTo(110.6698, 1e-9));
+      expect(first.percentile, 100);
+      expect(first.xp, closeTo(110.7315, 1e-9));
       expect(
         first.components,
         isEmpty,
@@ -322,25 +355,29 @@ void main() {
       expect(district.year, 2025);
       expect(district.source, Match13StandingSource.engine);
       expect(district.capacity, 160);
-      expect(district.cmpSlots, 83);
+      expect(district.cmpSlots, 80);
       expect(district.cmpPrequalSlots, 2);
-      expect(district.cmpCutline!.q50, 190);
+      expect(district.cmpCutline!.q50, 163);
       expect(district.pools, hasLength(1));
       expect(district.pools.first.name, 'fim');
-      expect(district.pools.first.autos, 5);
-      expect(district.pools.first.seatsByPoints, 155);
-      expect(district.pools.first.cutline!.q50, 70.5);
+      expect(district.pools.first.capacity, 160);
+      expect(district.pools.first.autos, 27);
+      expect(district.pools.first.seatsByPoints, 133);
+      expect(district.pools.first.cutline!.q50, 68);
 
       final leader = district.teams.first;
-      expect(leader.teamNumber, 27);
+      expect(leader.teamNumber, 67);
       expect(leader.rank, 1);
       expect(leader.pool, 'fim');
-      expect(leader.total, 359);
+      expect(leader.total, 423);
+      expect(leader.mean, 423);
+      expect(leader.pDcmp, 1);
       expect(leader.pCmp, 1);
-      expect(leader.dcmpStatus, Match13SeatStatus.qualified);
-      expect(leader.cmpStatus, Match13SeatStatus.locked);
-      expect(leader.events, hasLength(3));
-      expect(leader.events.first.eventKey, '2025miket');
+      expect(leader.dcmpStatus, Match13SeatStatus.locked);
+      expect(leader.cmpStatus, Match13SeatStatus.qualified);
+      expect(leader.events, hasLength(4));
+      expect(leader.events.first.eventKey, '2025mimil');
+      expect(leader.events.first.qual, 20);
       expect(leader.events.first.counted, isTrue);
       expect(
         leader.events.first.rookie,
@@ -349,11 +386,14 @@ void main() {
       );
 
       expect(
-        district.teams.last.cmpStatus,
-        Match13SeatStatus.lockedOut,
-        reason: 'the wire spells this one with an underscore',
+        district.teams.map((team) => team.dcmpStatus),
+        <Match13SeatStatus>[
+          Match13SeatStatus.locked,
+          Match13SeatStatus.qualified,
+          Match13SeatStatus.lockedOut,
+        ],
+        reason: 'the wire spells the last one with an underscore',
       );
-      expect(district.teams[1].cmpStatus, Match13SeatStatus.inRange);
     });
 
     test('getRegionalTeams reads the pool rules and the seat count', () async {
@@ -365,19 +405,19 @@ void main() {
 
       expect(pool!.year, 2026);
       expect(pool.source, Match13StandingSource.engine);
-      expect(pool.rules!.regionalSeats, 250);
+      expect(pool.rules!.regionalSeats, 247);
       expect(pool.rules!.direct, 'top_by_points');
       expect(pool.rules!.usDirect, 3);
       expect(pool.rules!.internationalDirect, 4);
       expect(pool.rules!.provisional, isFalse);
-      expect(pool.seats.direct, 184);
+      expect(pool.seats.direct, 174);
       expect(pool.seats.directTotal, 184);
-      expect(pool.seats.pool, 77);
+      expect(pool.seats.pool, 72);
       expect(pool.seats.prequal, 5);
-      expect(pool.seats.declined, 0);
-      expect(pool.regionalsTotal, 12);
-      expect(pool.regionalsComplete, 12);
-      expect(pool.poolCutline!.q50, 48);
+      expect(pool.seats.declined, 38);
+      expect(pool.regionalsTotal, 56);
+      expect(pool.regionalsComplete, 56);
+      expect(pool.poolCutline!.q50, 65);
 
       final leader = pool.teams.first;
       expect(leader.teamNumber, 4403);
@@ -386,15 +426,36 @@ void main() {
       expect(leader.projected, isNull);
       expect(leader.status, Match13SeatStatus.qualified);
       expect(leader.via, 'Top 4 at 2026mxto');
+      expect(leader.events, hasLength(2));
+      expect(leader.events.first.eventKey, '2026mxto');
       expect(leader.events.first.rookie, 0);
 
+      expect(pool.teams[1].status, Match13SeatStatus.declined);
       expect(
-        pool.teams[1].projected,
-        79,
+        pool.teams[2].projected,
+        39,
         reason: 'a team with one regional carries a projected second',
       );
-      expect(pool.teams.last.status, Match13SeatStatus.outOfRange);
-      expect(pool.teams.last.via, isNull);
+      expect(pool.teams[2].rookieBonus, 10);
+      expect(pool.teams[2].status, Match13SeatStatus.outOfRange);
+      expect(pool.teams[2].via, isNull);
+
+      final unplayed = pool.teams.last;
+      expect(unplayed.rank, isNull, reason: 'this team played no regional');
+      expect(unplayed.events, isEmpty);
+      expect(unplayed.total, 0);
+    });
+
+    test('seat statuses map from the wire, and an unknown one is null', () {
+      expect(
+        Match13SeatStatus.fromWire('in_range'),
+        Match13SeatStatus.inRange,
+        reason: 'no live standing carries in_range once a season is settled',
+      );
+      expect(Match13SeatStatus.fromWire('locked_out'),
+          Match13SeatStatus.lockedOut);
+      expect(Match13SeatStatus.fromWire(null), isNull);
+      expect(Match13SeatStatus.fromWire('something new'), isNull);
     });
 
     test('a tba-sourced standing has no forecast', () async {

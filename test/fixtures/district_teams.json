@@ -1,130 +1,170 @@
 {
   "capacity": 160,
   "cmpCutline": {
-    "q10": 180,
-    "q50": 190,
-    "q90": 205
+    "q10": 163,
+    "q50": 163,
+    "q90": 163
   },
-  "cmpSlots": 83,
   "cmpPrequalSlots": 2,
+  "cmpSlots": 80,
   "code": "fim",
   "districtKey": "2025fim",
   "pools": [
     {
-      "autos": 5,
+      "autos": 27,
       "capacity": 160,
       "cutline": {
-        "q10": 62,
-        "q50": 70.5,
-        "q90": 78
+        "q10": 68,
+        "q50": 68,
+        "q90": 68
       },
       "name": "fim",
-      "seatsByPoints": 155
+      "seatsByPoints": 133
     }
   ],
   "source": "engine",
   "teams": [
     {
       "adjustments": 0,
-      "cmpStatus": "locked",
-      "dcmpStatus": "qualified",
+      "cmpStatus": "qualified",
+      "dcmpStatus": "locked",
       "events": [
         {
           "alliance": 16,
           "award": 5,
           "counted": true,
           "elim": 30,
-          "eventKey": "2025miket",
-          "qual": 22
+          "eventKey": "2025mimil",
+          "qual": 20
         },
         {
           "alliance": 16,
-          "award": 0,
+          "award": 5,
           "counted": true,
           "elim": 30,
-          "eventKey": "2025miliv",
-          "qual": 21
+          "eventKey": "2025misal",
+          "qual": 22
         },
         {
           "alliance": 48,
           "award": 15,
           "counted": true,
           "elim": 90,
-          "eventKey": "2025micmp",
+          "eventKey": "2025micmp2",
           "qual": 66
-        }
-      ],
-      "mean": 359,
-      "pCmp": 1,
-      "pDcmp": 1,
-      "pool": "fim",
-      "q10": 359,
-      "q50": 359,
-      "q90": 359,
-      "rank": 1,
-      "rookieBonus": 0,
-      "teamNumber": 27,
-      "total": 359
-    },
-    {
-      "adjustments": 0,
-      "cmpStatus": "in_range",
-      "dcmpStatus": "locked",
-      "events": [
-        {
-          "alliance": 14,
-          "award": 0,
-          "counted": true,
-          "elim": 20,
-          "eventKey": "2025mimil",
-          "qual": 19
         },
-        {
-          "alliance": 15,
-          "award": 8,
-          "counted": true,
-          "elim": 30,
-          "eventKey": "2025mitvc",
-          "qual": 20
-        }
-      ],
-      "mean": 214.3,
-      "pCmp": 0.71,
-      "pDcmp": 1,
-      "pool": "fim",
-      "q10": 178,
-      "q50": 213,
-      "q90": 251,
-      "rank": 42,
-      "rookieBonus": 0,
-      "teamNumber": 3538,
-      "total": 126
-    },
-    {
-      "adjustments": 0,
-      "cmpStatus": "locked_out",
-      "dcmpStatus": "out_of_range",
-      "events": [
         {
           "alliance": 0,
           "award": 0,
           "counted": true,
-          "elim": 0,
-          "eventKey": "2025mimil",
-          "qual": 9
+          "elim": 60,
+          "eventKey": "2025micmp",
+          "qual": 0
         }
       ],
-      "mean": 41.8,
-      "pCmp": 0,
-      "pDcmp": 0.04,
+      "mean": 423,
+      "pCmp": 1,
+      "pDcmp": 1,
       "pool": "fim",
-      "q10": 27,
-      "q50": 40,
-      "q90": 58,
-      "rank": 401,
-      "rookieBonus": 10,
-      "teamNumber": 10381,
-      "total": 19
+      "q10": 423,
+      "q50": 423,
+      "q90": 423,
+      "rank": 1,
+      "rookieBonus": 0,
+      "teamNumber": 67,
+      "total": 423
+    },
+    {
+      "adjustments": 0,
+      "cmpStatus": "qualified",
+      "dcmpStatus": "qualified",
+      "events": [
+        {
+          "alliance": 16,
+          "award": 10,
+          "counted": true,
+          "elim": 30,
+          "eventKey": "2025misjo",
+          "qual": 21
+        },
+        {
+          "alliance": 16,
+          "award": 5,
+          "counted": true,
+          "elim": 30,
+          "eventKey": "2025mibro",
+          "qual": 19
+        },
+        {
+          "alliance": 45,
+          "award": 0,
+          "counted": true,
+          "elim": 90,
+          "eventKey": "2025micmp3",
+          "qual": 51
+        },
+        {
+          "alliance": 0,
+          "award": 30,
+          "counted": true,
+          "elim": 0,
+          "eventKey": "2025micmp",
+          "qual": 0
+        }
+      ],
+      "mean": 363,
+      "pCmp": 1,
+      "pDcmp": 1,
+      "pool": "fim",
+      "q10": 363,
+      "q50": 363,
+      "q90": 363,
+      "rank": 5,
+      "rookieBonus": 0,
+      "teamNumber": 3620,
+      "total": 363
+    },
+    {
+      "adjustments": 0,
+      "cmpStatus": "locked",
+      "dcmpStatus": "locked_out",
+      "events": [
+        {
+          "alliance": 0,
+          "award": 5,
+          "counted": true,
+          "elim": 0,
+          "eventKey": "2025mitvc",
+          "qual": 13
+        },
+        {
+          "alliance": 13,
+          "award": 5,
+          "counted": true,
+          "elim": 13,
+          "eventKey": "2025mimid",
+          "qual": 18
+        },
+        {
+          "alliance": 6,
+          "award": 0,
+          "counted": true,
+          "elim": 60,
+          "eventKey": "2025micmp4",
+          "qual": 30
+        }
+      ],
+      "mean": 163,
+      "pCmp": 1,
+      "pDcmp": 0,
+      "pool": "fim",
+      "q10": 163,
+      "q50": 163,
+      "q90": 163,
+      "rank": 77,
+      "rookieBonus": 0,
+      "teamNumber": 5193,
+      "total": 163
     }
   ],
   "year": 2025

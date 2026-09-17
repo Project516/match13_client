@@ -1,25 +1,25 @@
 {
   "poolCutline": {
-    "q10": 48,
-    "q50": 48,
-    "q90": 48
+    "q10": 65,
+    "q50": 65,
+    "q90": 65
   },
   "regionals": {
-    "complete": 12,
-    "total": 12
+    "complete": 56,
+    "total": 56
   },
   "rules": {
     "direct": "top_by_points",
     "internationalDirect": 4,
     "provisional": false,
-    "regionalSeats": 250,
+    "regionalSeats": 247,
     "usDirect": 3
   },
   "seats": {
-    "declined": 0,
-    "direct": 184,
+    "declined": 38,
+    "direct": 174,
     "directTotal": 184,
-    "pool": 77,
+    "pool": 72,
     "prequal": 5
   },
   "source": "engine",
@@ -64,51 +64,76 @@
       "events": [
         {
           "alliance": 14,
-          "award": 45,
+          "award": 0,
           "counted": true,
-          "elim": 30,
-          "eventKey": "2026qcmo",
+          "elim": 20,
+          "eventKey": "2026tuhc",
           "qual": 19,
-          "rookie": 0
+          "rookie": 10
+        },
+        {
+          "alliance": 16,
+          "award": 8,
+          "counted": true,
+          "elim": 20,
+          "eventKey": "2026tuis3",
+          "qual": 20,
+          "rookie": 10
         }
       ],
-      "mean": 187,
+      "mean": 137,
       "pCmp": 1,
-      "projected": 79,
-      "q10": 187,
-      "q50": 187,
-      "q90": 187,
-      "rank": 2,
-      "rookieBonus": 0,
-      "status": "qualified",
-      "teamNumber": 3544,
-      "total": 187,
-      "via": "Top 4 at 2026qcmo"
+      "projected": null,
+      "q10": 137,
+      "q50": 137,
+      "q90": 137,
+      "rank": 46,
+      "rookieBonus": 20,
+      "status": "declined",
+      "teamNumber": 11216,
+      "total": 137,
+      "via": "Top 4 at 2026tuhc"
     },
     {
       "adjustments": 0,
       "events": [
         {
-          "alliance": 1,
-          "award": 0,
+          "alliance": 10,
+          "award": 8,
           "counted": true,
-          "elim": 30,
-          "eventKey": "2026mnmi",
-          "qual": 15,
-          "rookie": 0
+          "elim": 0,
+          "eventKey": "2026tuak2",
+          "qual": 14,
+          "rookie": 10
         }
       ],
-      "mean": 88,
+      "mean": 81,
       "pCmp": 0,
-      "projected": 42,
-      "q10": 88,
-      "q50": 88,
-      "q90": 88,
-      "rank": 209,
+      "projected": 39,
+      "q10": 81,
+      "q50": 81,
+      "q90": 81,
+      "rank": 253,
+      "rookieBonus": 10,
+      "status": "out_of_range",
+      "teamNumber": 11098,
+      "total": 81,
+      "via": null
+    },
+    {
+      "adjustments": 0,
+      "events": [],
+      "mean": 0,
+      "pCmp": 0.01,
+      "projected": null,
+      "q10": 0,
+      "q50": 0,
+      "q90": 0,
+      "rank": null,
       "rookieBonus": 0,
       "status": "out_of_range",
-      "teamNumber": 2480,
-      "total": 88,
+      "teamNumber": 10230,
+      "total": 0,
       "via": null
     }
   ],

@@ -9,6 +9,5 @@
   teams, district standings and regional pool standings.
 - Bearer-key auth, RFC 9457 problem bodies surfaced as `Match13ApiException`,
   and retries on 429 and 5xx that honour the API's `retryAfter`.
-- Models verified against the published OpenAPI schema and response examples.
-  Not yet exercised against a live 200; see "Verification status" in the
-  README.
+- Models checked against bodies captured off the live API, with all nine
+  routes run end to end through the client on 2026-09-17.
