@@ -1,0 +1,21 @@
+name: match13_client
+description: A typed Dart client for the match13 read API (FRC xP ratings, match forecasts, event simulations). Pure Dart, no Flutter dependency.
+version: 0.1.0
+repository: https://github.com/Project516/match13_client
+
+topics:
+  - frc
+  - match13
+  - ratings
+  - api-client
+  - robotics
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  http: ^1.2.2
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.0

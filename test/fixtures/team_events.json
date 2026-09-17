@@ -1,0 +1,78 @@
+{
+  "events": [
+    {
+      "components": {
+        "algae": 1.0604,
+        "coral": 8.1788
+      },
+      "districtPoints": null,
+      "dpr": 22.0204,
+      "epa": 62.1664,
+      "eventKey": "2025camb",
+      "opr": 70.4095,
+      "regionalPoints": null,
+      "sos": 0.232,
+      "xAuto": 15.6254,
+      "xEnd": 12.8592,
+      "xRp1": 0.64226,
+      "xRp2": 0.349623,
+      "xRp3": 0.521305,
+      "xTele": 53.5253,
+      "xVar": 115.2155,
+      "xpEnd": 82.0099,
+      "xpMax": 84.6032,
+      "xpMean": 79.8057,
+      "xpStart": 65.7653
+    },
+    {
+      "components": {
+        "algae": 1.4977,
+        "coral": 11.5501
+      },
+      "districtPoints": null,
+      "dpr": 27.4963,
+      "epa": 75.5946,
+      "eventKey": "2025casj",
+      "opr": 79.4514,
+      "regionalPoints": null,
+      "sos": 0.4621,
+      "xAuto": 20.3824,
+      "xEnd": 11.9938,
+      "xRp1": 0.64226,
+      "xRp2": 0.349623,
+      "xRp3": 0.521305,
+      "xTele": 61.2348,
+      "xVar": 115.2155,
+      "xpEnd": 93.611,
+      "xpMax": 94.4375,
+      "xpMean": 92.1095,
+      "xpStart": 82.0099
+    },
+    {
+      "components": {
+        "algae": 3.1266,
+        "coral": 15.1416
+      },
+      "districtPoints": null,
+      "dpr": 72.4292,
+      "epa": 81.0361,
+      "eventKey": "2025joh",
+      "opr": 86.6324,
+      "regionalPoints": null,
+      "sos": 0.7741,
+      "xAuto": 18.9202,
+      "xEnd": 8.4526,
+      "xRp1": 0.64226,
+      "xRp2": 0.349623,
+      "xRp3": 0.521305,
+      "xTele": 54.2937,
+      "xVar": 115.2155,
+      "xpEnd": 81.6664,
+      "xpMax": 91.1428,
+      "xpMean": 86.3058,
+      "xpStart": 93.611
+    }
+  ],
+  "teamNumber": 581,
+  "year": 2025
+}

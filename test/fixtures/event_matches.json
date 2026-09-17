@@ -1,0 +1,162 @@
+{
+  "eventKey": "2025casj",
+  "matches": [
+    {
+      "key": "2025casj_qm1",
+      "pred": {
+        "blueRp1": 0.685609,
+        "blueRp2": 0.122539,
+        "blueRp3": 0.561011,
+        "blueScore": 70.9489,
+        "blueVar": 506.4479,
+        "redRp1": 0.180834,
+        "redRp2": 0.007142,
+        "redRp3": 0.31013,
+        "redScore": 20.8668,
+        "redVar": 506.4479,
+        "winProb": 0.02999
+      },
+      "teams": {
+        "10059": {
+          "xAutoPost": 3.7981,
+          "xAutoPre": 4.355,
+          "xEndPost": 1.9295,
+          "xEndPre": 2.34,
+          "xTelePost": 11.9242,
+          "xTelePre": 14.7549,
+          "xpPost": 17.6518,
+          "xpPre": 21.4499
+        },
+        "1351": {
+          "xAutoPost": 8.1572,
+          "xAutoPre": 7.1634,
+          "xEndPost": 3.4691,
+          "xEndPre": 3.8738,
+          "xTelePost": 31.4525,
+          "xTelePre": 35.9431,
+          "xpPost": 43.0787,
+          "xpPre": 46.9803
+        },
+        "6059": {
+          "xAutoPost": 4.7387,
+          "xAutoPre": 5.3755,
+          "xEndPost": 1.9286,
+          "xEndPre": 2.4423,
+          "xTelePost": 10.1949,
+          "xTelePre": 13.7829,
+          "xpPost": 16.8621,
+          "xpPre": 21.6007
+        },
+        "6418": {
+          "xAutoPost": 10.1761,
+          "xAutoPre": 9.3586,
+          "xEndPost": 3.2206,
+          "xEndPre": 3.597,
+          "xTelePost": 23.9118,
+          "xTelePre": 27.9882,
+          "xpPost": 37.3085,
+          "xpPre": 40.9438
+        },
+        "649": {
+          "xAutoPost": 11.5221,
+          "xAutoPre": 10.3353,
+          "xEndPost": 2.1682,
+          "xEndPre": 2.563,
+          "xTelePost": 37.7007,
+          "xTelePre": 42.1002,
+          "xpPost": 51.391,
+          "xpPre": 54.9984
+        },
+        "668": {
+          "xAutoPost": 3.0978,
+          "xAutoPre": 3.5856,
+          "xEndPost": 3.7892,
+          "xEndPre": 4.2807,
+          "xTelePost": 15.9222,
+          "xTelePre": 19.258,
+          "xpPost": 22.8091,
+          "xpPre": 27.1243
+        }
+      }
+    },
+    {
+      "key": "2025casj_f1m1",
+      "pred": {
+        "blueRp1": 0.985029,
+        "blueRp2": 0.834493,
+        "blueRp3": 0.989163,
+        "blueScore": 148.2187,
+        "blueVar": 1016.1576,
+        "redRp1": 0.994765,
+        "redRp2": 0.997851,
+        "redRp3": 0.998297,
+        "redScore": 216.8348,
+        "redVar": 949.6404,
+        "winProb": 0.964163
+      },
+      "teams": {
+        "1323": {
+          "xAutoPost": 27.2755,
+          "xAutoPre": 27.2378,
+          "xEndPost": 12.7936,
+          "xEndPre": 12.7599,
+          "xTelePost": 83.8772,
+          "xTelePre": 84.3402,
+          "xpPost": 123.9462,
+          "xpPre": 124.3378
+        },
+        "3045": {
+          "xAutoPost": 22.6042,
+          "xAutoPre": 22.348,
+          "xEndPost": 5.6794,
+          "xEndPre": 5.3622,
+          "xTelePost": 51.8073,
+          "xTelePre": 51.5033,
+          "xpPost": 80.0909,
+          "xpPre": 79.2134
+        },
+        "581": {
+          "xAutoPost": 20.4423,
+          "xAutoPre": 20.2773,
+          "xEndPost": 12.0918,
+          "xEndPre": 11.8503,
+          "xTelePost": 61.2512,
+          "xTelePre": 61.193,
+          "xpPost": 93.7853,
+          "xpPre": 93.3206
+        },
+        "5940": {
+          "xAutoPost": 23.6831,
+          "xAutoPre": 23.6652,
+          "xEndPost": 12.7521,
+          "xEndPre": 12.7311,
+          "xTelePost": 74.224,
+          "xTelePre": 74.782,
+          "xpPost": 110.6592,
+          "xpPre": 111.1782
+        },
+        "649": {
+          "xAutoPost": 5.3036,
+          "xAutoPre": 5.5468,
+          "xEndPost": 2.2634,
+          "xEndPre": 2.3513,
+          "xTelePost": 12.2559,
+          "xTelePre": 13.2515,
+          "xpPost": 19.8229,
+          "xpPre": 21.1496
+        },
+        "668": {
+          "xAutoPost": 3.964,
+          "xAutoPre": 3.848,
+          "xEndPost": 3.8951,
+          "xEndPre": 3.7459,
+          "xTelePost": 9.7634,
+          "xTelePre": 9.7146,
+          "xpPost": 17.6225,
+          "xpPre": 17.3085
+        }
+      }
+    }
+  ],
+  "year": 2025
+}

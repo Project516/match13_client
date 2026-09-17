@@ -1,0 +1,78 @@
+{
+  "eventKey": "2025casj",
+  "teams": [
+    {
+      "components": {
+        "algae": 0.5702,
+        "coral": 5.0709
+      },
+      "districtPoints": null,
+      "dpr": 38.6632,
+      "epa": 31.5066,
+      "opr": 33.7687,
+      "regionalPoints": null,
+      "sos": 0.6691,
+      "teamNumber": 100,
+      "xAuto": 10.6078,
+      "xEnd": 4.292,
+      "xRp1": 0.489496,
+      "xRp2": 0.193151,
+      "xRp3": 0.166468,
+      "xTele": 29.0555,
+      "xVar": 79.9134,
+      "xpEnd": 43.9553,
+      "xpMax": 46.2486,
+      "xpMean": 40.387,
+      "xpStart": 42.6122
+    },
+    {
+      "components": {
+        "algae": 1.4977,
+        "coral": 11.5501
+      },
+      "districtPoints": null,
+      "dpr": 27.4963,
+      "epa": 75.5946,
+      "opr": 79.4514,
+      "regionalPoints": null,
+      "sos": 0.4621,
+      "teamNumber": 581,
+      "xAuto": 20.3824,
+      "xEnd": 11.9938,
+      "xRp1": 0.64226,
+      "xRp2": 0.349623,
+      "xRp3": 0.521305,
+      "xTele": 61.2348,
+      "xVar": 115.2155,
+      "xpEnd": 93.611,
+      "xpMax": 94.4375,
+      "xpMean": 92.1095,
+      "xpStart": 82.0099
+    },
+    {
+      "components": {
+        "algae": 0.7569,
+        "coral": 3.554
+      },
+      "districtPoints": null,
+      "dpr": 23.7129,
+      "epa": 15.3762,
+      "opr": 10.2166,
+      "regionalPoints": null,
+      "sos": 0.2236,
+      "teamNumber": 649,
+      "xAuto": 5.367,
+      "xEnd": 2.274,
+      "xRp1": 0.241558,
+      "xRp2": 0.113872,
+      "xRp3": 0.154316,
+      "xTele": 12.314,
+      "xVar": 134.684,
+      "xpEnd": 19.955,
+      "xpMax": 51.391,
+      "xpMean": 31.4278,
+      "xpStart": 54.9984
+    }
+  ],
+  "year": 2025
+}

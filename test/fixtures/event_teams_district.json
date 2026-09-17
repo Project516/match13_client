@@ -1,0 +1,39 @@
+{
+  "eventKey": "2025mimil",
+  "teams": [
+    {
+      "components": {
+        "algae": 1.8316,
+        "coral": 4.6988
+      },
+      "districtPoints": {
+        "alliance": 10,
+        "award": 0,
+        "counted": true,
+        "elim": 0,
+        "final": true,
+        "qual": 16,
+        "tier": "district",
+        "total": 26
+      },
+      "dpr": 28.1319,
+      "epa": 27.4116,
+      "opr": 33.4173,
+      "regionalPoints": null,
+      "sos": 0.6302,
+      "teamNumber": 66,
+      "xAuto": 6.1497,
+      "xEnd": 4.9469,
+      "xRp1": 0.47506,
+      "xRp2": 0.148757,
+      "xRp3": 0.303508,
+      "xTele": 28.6443,
+      "xVar": 163.2228,
+      "xpEnd": 39.7409,
+      "xpMax": 40.4899,
+      "xpMean": 33.7814,
+      "xpStart": 33.4522
+    }
+  ],
+  "year": 2025
+}

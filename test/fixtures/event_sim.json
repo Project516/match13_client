@@ -1,0 +1,32 @@
+{
+  "eventKey": "2026arc",
+  "iterations": 25000,
+  "simmedAt": 1789097293645,
+  "teams": [
+    {
+      "meanRank": 7,
+      "meanRps": 40,
+      "p5": 7,
+      "p50": 7,
+      "p95": 7,
+      "teamNumber": 27
+    },
+    {
+      "meanRank": 13,
+      "meanRps": 34,
+      "p5": 13,
+      "p50": 13,
+      "p95": 13,
+      "teamNumber": 103
+    },
+    {
+      "meanRank": 46,
+      "meanRps": 22,
+      "p5": 46,
+      "p50": 46,
+      "p95": 46,
+      "teamNumber": 131
+    }
+  ],
+  "year": 2026
+}
