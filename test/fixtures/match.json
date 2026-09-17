@@ -1,0 +1,78 @@
+{
+  "key": "2025casj_qm42",
+  "pred": {
+    "blueRp1": 0.260159,
+    "blueRp2": 0.004122,
+    "blueRp3": 0.100203,
+    "blueScore": 36.885,
+    "blueVar": 580.9884,
+    "redRp1": 0.841082,
+    "redRp2": 0.173013,
+    "redRp3": 0.481645,
+    "redScore": 100.7128,
+    "redVar": 813.9049,
+    "winProb": 0.981692
+  },
+  "teams": {
+    "751": {
+      "xAutoPost": 4.4545,
+      "xAutoPre": 4.4931,
+      "xEndPost": 2.4616,
+      "xEndPre": 2.6835,
+      "xTelePost": 6.5608,
+      "xTelePre": 6.9778,
+      "xpPost": 13.4769,
+      "xpPre": 14.1543
+    },
+    "3045": {
+      "xAutoPost": 16.9761,
+      "xAutoPre": 16.8679,
+      "xEndPost": 2.8656,
+      "xEndPre": 2.9551,
+      "xTelePost": 50.0539,
+      "xTelePre": 50.9448,
+      "xpPost": 69.8956,
+      "xpPre": 70.7679
+    },
+    "4990": {
+      "xAutoPost": 5.3573,
+      "xAutoPre": 5.6383,
+      "xEndPost": 2.1835,
+      "xEndPre": 2.5482,
+      "xTelePost": 14.7146,
+      "xTelePre": 15.8976,
+      "xpPost": 22.2554,
+      "xpPre": 24.0841
+    },
+    "5027": {
+      "xAutoPost": -0.0334,
+      "xAutoPre": 0.0506,
+      "xEndPost": -0.0846,
+      "xEndPre": -0.0526,
+      "xTelePost": 0.9653,
+      "xTelePre": 2.5443,
+      "xpPost": 0.8474,
+      "xpPre": 2.5424
+    },
+    "8793": {
+      "xAutoPost": 7.9957,
+      "xAutoPre": 7.7325,
+      "xEndPost": 5.4284,
+      "xEndPre": 5.6311,
+      "xTelePost": 22.8578,
+      "xTelePre": 23.3878,
+      "xpPost": 36.282,
+      "xpPre": 36.7514
+    },
+    "10059": {
+      "xAutoPost": 4.1258,
+      "xAutoPre": 4.3931,
+      "xEndPost": 2.2415,
+      "xEndPre": 2.5205,
+      "xTelePost": 11.6761,
+      "xTelePre": 12.6889,
+      "xpPost": 18.0433,
+      "xpPre": 19.6025
+    }
+  }
+}

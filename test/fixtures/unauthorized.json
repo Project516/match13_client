@@ -1,0 +1,6 @@
+{
+    "type": "https://match13.com/docs/api#unauthorized",
+    "title": "Unauthorized",
+    "status": 401,
+    "detail": "Present an API key as `Authorization: Bearer m13_live_...`."
+}

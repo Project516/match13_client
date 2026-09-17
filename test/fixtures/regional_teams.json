@@ -1,0 +1,116 @@
+{
+  "poolCutline": {
+    "q10": 48,
+    "q50": 48,
+    "q90": 48
+  },
+  "regionals": {
+    "complete": 12,
+    "total": 12
+  },
+  "rules": {
+    "direct": "top_by_points",
+    "internationalDirect": 4,
+    "provisional": false,
+    "regionalSeats": 250,
+    "usDirect": 3
+  },
+  "seats": {
+    "declined": 0,
+    "direct": 184,
+    "directTotal": 184,
+    "pool": 77,
+    "prequal": 5
+  },
+  "source": "engine",
+  "teams": [
+    {
+      "adjustments": 0,
+      "events": [
+        {
+          "alliance": 15,
+          "award": 45,
+          "counted": true,
+          "elim": 20,
+          "eventKey": "2026mxto",
+          "qual": 20,
+          "rookie": 0
+        },
+        {
+          "alliance": 16,
+          "award": 28,
+          "counted": true,
+          "elim": 30,
+          "eventKey": "2026oktu",
+          "qual": 21,
+          "rookie": 0
+        }
+      ],
+      "mean": 195,
+      "pCmp": 1,
+      "projected": null,
+      "q10": 195,
+      "q50": 195,
+      "q90": 195,
+      "rank": 1,
+      "rookieBonus": 0,
+      "status": "qualified",
+      "teamNumber": 4403,
+      "total": 195,
+      "via": "Top 4 at 2026mxto"
+    },
+    {
+      "adjustments": 0,
+      "events": [
+        {
+          "alliance": 14,
+          "award": 45,
+          "counted": true,
+          "elim": 30,
+          "eventKey": "2026qcmo",
+          "qual": 19,
+          "rookie": 0
+        }
+      ],
+      "mean": 187,
+      "pCmp": 1,
+      "projected": 79,
+      "q10": 187,
+      "q50": 187,
+      "q90": 187,
+      "rank": 2,
+      "rookieBonus": 0,
+      "status": "qualified",
+      "teamNumber": 3544,
+      "total": 187,
+      "via": "Top 4 at 2026qcmo"
+    },
+    {
+      "adjustments": 0,
+      "events": [
+        {
+          "alliance": 1,
+          "award": 0,
+          "counted": true,
+          "elim": 30,
+          "eventKey": "2026mnmi",
+          "qual": 15,
+          "rookie": 0
+        }
+      ],
+      "mean": 88,
+      "pCmp": 0,
+      "projected": 42,
+      "q10": 88,
+      "q50": 88,
+      "q90": 88,
+      "rank": 209,
+      "rookieBonus": 0,
+      "status": "out_of_range",
+      "teamNumber": 2480,
+      "total": 88,
+      "via": null
+    }
+  ],
+  "year": 2026
+}

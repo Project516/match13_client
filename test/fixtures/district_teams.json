@@ -1,0 +1,131 @@
+{
+  "capacity": 160,
+  "cmpCutline": {
+    "q10": 180,
+    "q50": 190,
+    "q90": 205
+  },
+  "cmpSlots": 83,
+  "cmpPrequalSlots": 2,
+  "code": "fim",
+  "districtKey": "2025fim",
+  "pools": [
+    {
+      "autos": 5,
+      "capacity": 160,
+      "cutline": {
+        "q10": 62,
+        "q50": 70.5,
+        "q90": 78
+      },
+      "name": "fim",
+      "seatsByPoints": 155
+    }
+  ],
+  "source": "engine",
+  "teams": [
+    {
+      "adjustments": 0,
+      "cmpStatus": "locked",
+      "dcmpStatus": "qualified",
+      "events": [
+        {
+          "alliance": 16,
+          "award": 5,
+          "counted": true,
+          "elim": 30,
+          "eventKey": "2025miket",
+          "qual": 22
+        },
+        {
+          "alliance": 16,
+          "award": 0,
+          "counted": true,
+          "elim": 30,
+          "eventKey": "2025miliv",
+          "qual": 21
+        },
+        {
+          "alliance": 48,
+          "award": 15,
+          "counted": true,
+          "elim": 90,
+          "eventKey": "2025micmp",
+          "qual": 66
+        }
+      ],
+      "mean": 359,
+      "pCmp": 1,
+      "pDcmp": 1,
+      "pool": "fim",
+      "q10": 359,
+      "q50": 359,
+      "q90": 359,
+      "rank": 1,
+      "rookieBonus": 0,
+      "teamNumber": 27,
+      "total": 359
+    },
+    {
+      "adjustments": 0,
+      "cmpStatus": "in_range",
+      "dcmpStatus": "locked",
+      "events": [
+        {
+          "alliance": 14,
+          "award": 0,
+          "counted": true,
+          "elim": 20,
+          "eventKey": "2025mimil",
+          "qual": 19
+        },
+        {
+          "alliance": 15,
+          "award": 8,
+          "counted": true,
+          "elim": 30,
+          "eventKey": "2025mitvc",
+          "qual": 20
+        }
+      ],
+      "mean": 214.3,
+      "pCmp": 0.71,
+      "pDcmp": 1,
+      "pool": "fim",
+      "q10": 178,
+      "q50": 213,
+      "q90": 251,
+      "rank": 42,
+      "rookieBonus": 0,
+      "teamNumber": 3538,
+      "total": 126
+    },
+    {
+      "adjustments": 0,
+      "cmpStatus": "locked_out",
+      "dcmpStatus": "out_of_range",
+      "events": [
+        {
+          "alliance": 0,
+          "award": 0,
+          "counted": true,
+          "elim": 0,
+          "eventKey": "2025mimil",
+          "qual": 9
+        }
+      ],
+      "mean": 41.8,
+      "pCmp": 0,
+      "pDcmp": 0.04,
+      "pool": "fim",
+      "q10": 27,
+      "q50": 40,
+      "q90": 58,
+      "rank": 401,
+      "rookieBonus": 10,
+      "teamNumber": 10381,
+      "total": 19
+    }
+  ],
+  "year": 2025
+}
