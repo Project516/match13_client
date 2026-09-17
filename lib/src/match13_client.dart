@@ -227,7 +227,6 @@ class Match13Client {
       queryParameters: query.isEmpty ? null : query,
     );
 
-    Object? lastFailure;
     for (var attempt = 1; attempt <= _maxAttempts; attempt++) {
       http.Response response;
       try {
@@ -238,10 +237,9 @@ class Match13Client {
             'Accept': 'application/json',
           },
         );
-      } on Exception catch (error) {
+      } on Exception {
         // A dropped connection is as transient as a 500, and retrying it is
         // what makes an event-day refresh survive a flaky venue network.
-        lastFailure = error;
         if (attempt == _maxAttempts) rethrow;
         await _sleep(_backoff(attempt));
         continue;
@@ -256,13 +254,14 @@ class Match13Client {
       final transient =
           response.statusCode == 429 || response.statusCode >= 500;
       if (!transient || attempt == _maxAttempts) throw failure;
-      lastFailure = failure;
       // The API says how long to wait on a 429. Guessing shorter than that
       // just spends another request against the window that is already out.
       await _sleep(failure.retryAfter ?? _backoff(attempt));
     }
 
-    throw lastFailure ?? StateError('no attempt was made for $uri');
+    // Unreachable: the last attempt either returns or throws above. Dart
+    // still needs a terminal statement here.
+    throw StateError('no attempt was made for $uri');
   }
 
   Duration _backoff(int attempt) => Duration(milliseconds: 200 * attempt);

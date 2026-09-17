@@ -1,0 +1,35 @@
+{
+  "eventKey": "2026mxto",
+  "teams": [
+    {
+      "components": {},
+      "districtPoints": null,
+      "dpr": 29.1741,
+      "epa": 68.4663,
+      "opr": 70.6714,
+      "regionalPoints": {
+        "alliance": 12,
+        "award": 0,
+        "counted": true,
+        "elim": 7,
+        "final": true,
+        "qual": 17,
+        "rookie": 0
+      },
+      "sos": 0.102,
+      "teamNumber": 2283,
+      "xAuto": 18.0915,
+      "xEnd": -0.1961,
+      "xRp1": 0.430595,
+      "xRp2": 0.061238,
+      "xRp3": 0.053432,
+      "xTele": 55.9208,
+      "xVar": 310.7228,
+      "xpEnd": 73.8161,
+      "xpMax": 76.9972,
+      "xpMean": 69.5363,
+      "xpStart": 58.7808
+    }
+  ],
+  "year": 2026
+}

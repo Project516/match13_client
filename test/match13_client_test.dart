@@ -15,6 +15,8 @@ import 'package:test/test.dart';
 ///   curl -H "$H" $B/v1/teams/581/years/2025          > team_season.json
 ///   curl -H "$H" $B/v1/teams/581/years/2025/events   > team_events.json
 ///   curl -H "$H" $B/v1/events/2025casj/teams         > event_teams.json    # 3 of 37 teams
+///   curl -H "$H" $B/v1/events/2025mimil/teams        > event_teams_district.json # 1 of 40 teams
+///   curl -H "$H" $B/v1/events/2026mxto/teams         > event_teams_regional.json # 1 of 45 teams
 ///   curl -H "$H" $B/v1/events/2025casj/matches       > event_matches.json  # 2 of 89 matches
 ///   curl -H "$H" $B/v1/matches/2025casj_qm42         > match.json
 ///   curl -H "$H" $B/v1/events/2026arc/sim            > event_sim.json      # 3 of 75 teams
@@ -444,6 +446,56 @@ void main() {
       expect(unplayed.rank, isNull, reason: 'this team played no regional');
       expect(unplayed.events, isEmpty);
       expect(unplayed.total, 0);
+    });
+
+    test('a district event pays district points and no regional ones',
+        () async {
+      final client = _clientFor(
+        MockClient((_) async => _ok(_fixture('event_teams_district'))),
+      );
+
+      final event = await client.getEventTeams('2025mimil');
+
+      final team = event!.teams.single;
+      expect(team.teamNumber, 66);
+      expect(team.regionalPoints, isNull);
+      final points = team.districtPoints!;
+      expect(points.qual, 16);
+      expect(points.elim, 0);
+      expect(points.alliance, 10);
+      expect(points.award, 0);
+      expect(points.total, 26);
+      expect(points.tier, 'district');
+      expect(points.counted, isTrue);
+      expect(
+        points.isFinal,
+        isTrue,
+        reason: 'the wire spells this one `final`, which Dart reserves',
+      );
+    });
+
+    test('a regional pays pool points and no district ones', () async {
+      final client = _clientFor(
+        MockClient((_) async => _ok(_fixture('event_teams_regional'))),
+      );
+
+      final event = await client.getEventTeams('2026mxto');
+
+      final team = event!.teams.single;
+      expect(team.teamNumber, 2283);
+      expect(team.districtPoints, isNull);
+      final points = team.regionalPoints!;
+      expect(points.qual, 17);
+      expect(points.elim, 7);
+      expect(points.alliance, 12);
+      expect(points.award, 0);
+      expect(points.rookie, 0);
+      expect(points.counted, isTrue);
+      expect(
+        points.isFinal,
+        isTrue,
+        reason: 'the wire spells this one `final`, which Dart reserves',
+      );
     });
 
     test('seat statuses map from the wire, and an unknown one is null', () {

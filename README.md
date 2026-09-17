@@ -55,7 +55,7 @@ when you are done so the underlying HTTP client is released.
 | `getEventMatches(eventKey)` | `GET /v1/events/{eventKey}/matches` | `Match13EventMatches?` |
 | `getMatch(matchKey)` | `GET /v1/matches/{matchKey}` | `Match13Match?` |
 | `getEventSim(eventKey)` | `GET /v1/events/{eventKey}/sim` | `Match13EventSim?` |
-| `getYearTeams(year, {page, limit})` | `GET /v1/years/{year}/teams` | `Match13YearTeams?` |
+| `getYearTeams(year)` | `GET /v1/years/{year}/teams` | `Match13YearTeams?` |
 | `getDistrictTeams(code, year)` | `GET /v1/districts/{code}/{year}/teams` | `Match13DistrictTeams?` |
 | `getRegionalTeams(year)` | `GET /v1/regionals/{year}/teams` | `Match13RegionalTeams?` |
 
