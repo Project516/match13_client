@@ -31,8 +31,9 @@ hour and 30000 a week. A 304 and an error count against it like anything else.
 ## Two things to know before you wire this up
 
 **The API sends no CORS headers.** A browser cannot read it, so this client
-cannot reach match13 from a Flutter web build. Call it from iOS, Android,
-desktop or a server, where the key also stays out of sight.
+cannot reach match13 directly from a Flutter web build. Call it from iOS,
+Android, desktop or a server, where the key also stays out of sight, or point
+`baseUrl` at a proxy that adds CORS headers and the key itself.
 
 **match13 carries ratings, not a schedule.** There is no comp level, match
 number, start time, alliance colour or score anywhere in it, and no team names.
@@ -40,7 +41,9 @@ Read those from The Blue Alliance and join on the match key or the team number.
 
 ## API reference
 
-`Match13Client` targets `https://actions.match13.com`. Every method answers
+`Match13Client` targets `https://actions.match13.com` by default; pass
+`baseUrl` to point it at a proxy instead, and omit `apiKey` (or pass an empty
+string) when the proxy holds the key. Every method answers
 `null` on 404, which is the normal answer for a team that did not play a
 season, an event match13 does not carry, or an event the engine has not
 simulated. Anything else outside 2xx throws `Match13ApiException`, carrying the
