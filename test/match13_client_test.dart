@@ -31,36 +31,34 @@ String _fixture(String name) =>
     File('test/fixtures/$name.json').readAsStringSync();
 
 http.Response _ok(String body) => http.Response(
-      body,
-      200,
-      headers: const <String, String>{'content-type': 'application/json'},
-    );
+  body,
+  200,
+  headers: const <String, String>{'content-type': 'application/json'},
+);
 
 http.Response _problem(
   int status,
   Map<String, dynamic> body, {
   Map<String, String> headers = const <String, String>{},
-}) =>
-    http.Response(
-      jsonEncode(body),
-      status,
-      headers: <String, String>{
-        'content-type': 'application/problem+json',
-        ...headers,
-      },
-    );
+}) => http.Response(
+  jsonEncode(body),
+  status,
+  headers: <String, String>{
+    'content-type': 'application/problem+json',
+    ...headers,
+  },
+);
 
 Match13Client _clientFor(
   MockClient mockClient, {
   int maxAttempts = 3,
   List<Duration>? slept,
-}) =>
-    Match13Client(
-      apiKey: 'm13_live_test',
-      httpClient: mockClient,
-      maxAttempts: maxAttempts,
-      sleep: (duration) async => slept?.add(duration),
-    );
+}) => Match13Client(
+  apiKey: 'm13_live_test',
+  httpClient: mockClient,
+  maxAttempts: maxAttempts,
+  sleep: (duration) async => slept?.add(duration),
+);
 
 void main() {
   group('requests', () {
@@ -114,6 +112,73 @@ void main() {
         'page': '2',
         'limit': '500',
       });
+    });
+
+    test('sends requests to an injected base URL', () async {
+      late Uri seen;
+      final client = Match13Client(
+        apiKey: 'm13_live_test',
+        baseUrl: 'https://proxy.example.com/match13',
+        httpClient: MockClient((request) async {
+          seen = request.url;
+          return _ok(_fixture('team_season'));
+        }),
+      );
+
+      await client.getTeamSeason(581, 2025);
+
+      expect(
+        seen.toString(),
+        'https://proxy.example.com/match13/v1/teams/581/years/2025',
+      );
+    });
+
+    test('strips a trailing slash from an injected base URL', () async {
+      late Uri seen;
+      final client = Match13Client(
+        apiKey: 'm13_live_test',
+        baseUrl: 'https://proxy.example.com/match13/',
+        httpClient: MockClient((request) async {
+          seen = request.url;
+          return _ok(_fixture('team_season'));
+        }),
+      );
+
+      await client.getTeamSeason(581, 2025);
+
+      expect(
+        seen.toString(),
+        'https://proxy.example.com/match13/v1/teams/581/years/2025',
+      );
+    });
+
+    test('sends no Authorization header when no key is given', () async {
+      late http.Request seen;
+      final client = Match13Client(
+        httpClient: MockClient((request) async {
+          seen = request;
+          return _ok(_fixture('team_season'));
+        }),
+      );
+
+      await client.getTeamSeason(581, 2025);
+
+      expect(seen.headers.containsKey('Authorization'), isFalse);
+    });
+
+    test('sends no Authorization header when the key is empty', () async {
+      late http.Request seen;
+      final client = Match13Client(
+        apiKey: '',
+        httpClient: MockClient((request) async {
+          seen = request;
+          return _ok(_fixture('team_season'));
+        }),
+      );
+
+      await client.getTeamSeason(581, 2025);
+
+      expect(seen.headers.containsKey('Authorization'), isFalse);
     });
   });
 
@@ -195,11 +260,11 @@ void main() {
       expect(first.xpEnd, closeTo(43.9553, 1e-9));
       expect(first.sos, closeTo(0.6691, 1e-9));
       expect(first.components['coral'], closeTo(5.0709, 1e-9));
-      expect(
-        event.teams.map((team) => team.xpEnd),
-        <double>[43.9553, 93.611, 19.955],
-        reason: 'the API does not send these in rank order',
-      );
+      expect(event.teams.map((team) => team.xpEnd), <double>[
+        43.9553,
+        93.611,
+        19.955,
+      ], reason: 'the API does not send these in rank order');
     });
 
     test('getEventMatches reads a forecast per match', () async {
@@ -230,8 +295,9 @@ void main() {
     });
 
     test('getMatch keys the teams by team number', () async {
-      final client =
-          _clientFor(MockClient((_) async => _ok(_fixture('match'))));
+      final client = _clientFor(
+        MockClient((_) async => _ok(_fixture('match'))),
+      );
 
       final match = await client.getMatch('2025casj_qm42');
 
@@ -387,15 +453,11 @@ void main() {
         reason: 'a district row carries the rookie bonus on the team',
       );
 
-      expect(
-        district.teams.map((team) => team.dcmpStatus),
-        <Match13SeatStatus>[
-          Match13SeatStatus.locked,
-          Match13SeatStatus.qualified,
-          Match13SeatStatus.lockedOut,
-        ],
-        reason: 'the wire spells the last one with an underscore',
-      );
+      expect(district.teams.map((team) => team.dcmpStatus), <Match13SeatStatus>[
+        Match13SeatStatus.locked,
+        Match13SeatStatus.qualified,
+        Match13SeatStatus.lockedOut,
+      ], reason: 'the wire spells the last one with an underscore');
     });
 
     test('getRegionalTeams reads the pool rules and the seat count', () async {
@@ -448,31 +510,33 @@ void main() {
       expect(unplayed.total, 0);
     });
 
-    test('a district event pays district points and no regional ones',
-        () async {
-      final client = _clientFor(
-        MockClient((_) async => _ok(_fixture('event_teams_district'))),
-      );
+    test(
+      'a district event pays district points and no regional ones',
+      () async {
+        final client = _clientFor(
+          MockClient((_) async => _ok(_fixture('event_teams_district'))),
+        );
 
-      final event = await client.getEventTeams('2025mimil');
+        final event = await client.getEventTeams('2025mimil');
 
-      final team = event!.teams.single;
-      expect(team.teamNumber, 66);
-      expect(team.regionalPoints, isNull);
-      final points = team.districtPoints!;
-      expect(points.qual, 16);
-      expect(points.elim, 0);
-      expect(points.alliance, 10);
-      expect(points.award, 0);
-      expect(points.total, 26);
-      expect(points.tier, 'district');
-      expect(points.counted, isTrue);
-      expect(
-        points.isFinal,
-        isTrue,
-        reason: 'the wire spells this one `final`, which Dart reserves',
-      );
-    });
+        final team = event!.teams.single;
+        expect(team.teamNumber, 66);
+        expect(team.regionalPoints, isNull);
+        final points = team.districtPoints!;
+        expect(points.qual, 16);
+        expect(points.elim, 0);
+        expect(points.alliance, 10);
+        expect(points.award, 0);
+        expect(points.total, 26);
+        expect(points.tier, 'district');
+        expect(points.counted, isTrue);
+        expect(
+          points.isFinal,
+          isTrue,
+          reason: 'the wire spells this one `final`, which Dart reserves',
+        );
+      },
+    );
 
     test('a regional pays pool points and no district ones', () async {
       final client = _clientFor(
@@ -504,8 +568,10 @@ void main() {
         Match13SeatStatus.inRange,
         reason: 'no live standing carries in_range once a season is settled',
       );
-      expect(Match13SeatStatus.fromWire('locked_out'),
-          Match13SeatStatus.lockedOut);
+      expect(
+        Match13SeatStatus.fromWire('locked_out'),
+        Match13SeatStatus.lockedOut,
+      );
       expect(Match13SeatStatus.fromWire(null), isNull);
       expect(Match13SeatStatus.fromWire('something new'), isNull);
     });
@@ -713,8 +779,11 @@ void main() {
       await expectLater(
         client.getEventTeams('2025casj'),
         throwsA(
-          isA<Match13ApiException>()
-              .having((e) => e.title, 'title', 'HTTP 500'),
+          isA<Match13ApiException>().having(
+            (e) => e.title,
+            'title',
+            'HTTP 500',
+          ),
         ),
       );
     });

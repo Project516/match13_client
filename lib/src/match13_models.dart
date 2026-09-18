@@ -261,10 +261,12 @@ class Match13TeamEvent {
       opr: _numOrNull(json['opr']),
       dpr: _numOrNull(json['dpr']),
       components: _components(json['components']),
-      districtPoints:
-          district == null ? null : Match13DistrictPoints.fromJson(district),
-      regionalPoints:
-          regional == null ? null : Match13RegionalPoints.fromJson(regional),
+      districtPoints: district == null
+          ? null
+          : Match13DistrictPoints.fromJson(district),
+      regionalPoints: regional == null
+          ? null
+          : Match13RegionalPoints.fromJson(regional),
     );
   }
 
@@ -456,9 +458,11 @@ class Match13Match {
   });
 
   factory Match13Match.fromJson(Map<String, dynamic> json) {
-    final prediction = (json['pred'] as Map?)?.cast<String, dynamic>() ??
+    final prediction =
+        (json['pred'] as Map?)?.cast<String, dynamic>() ??
         const <String, dynamic>{};
-    final teams = (json['teams'] as Map?)?.cast<String, dynamic>() ??
+    final teams =
+        (json['teams'] as Map?)?.cast<String, dynamic>() ??
         const <String, dynamic>{};
     return Match13Match(
       key: json['key'] as String? ?? '',
@@ -1016,9 +1020,11 @@ class Match13RegionalTeams {
 
   factory Match13RegionalTeams.fromJson(Map<String, dynamic> json) {
     final rules = (json['rules'] as Map?)?.cast<String, dynamic>();
-    final seats = (json['seats'] as Map?)?.cast<String, dynamic>() ??
+    final seats =
+        (json['seats'] as Map?)?.cast<String, dynamic>() ??
         const <String, dynamic>{};
-    final regionals = (json['regionals'] as Map?)?.cast<String, dynamic>() ??
+    final regionals =
+        (json['regionals'] as Map?)?.cast<String, dynamic>() ??
         const <String, dynamic>{};
     final cutline = (json['poolCutline'] as Map?)?.cast<String, dynamic>();
     return Match13RegionalTeams(

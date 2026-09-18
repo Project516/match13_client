@@ -70,26 +70,39 @@ class Match13ApiException implements Exception {
 /// https://www.match13.com/account and sent as `Authorization: Bearer
 /// m13_live_...`. All the keys of one account share one allowance: 60
 /// requests a minute, 1000 an hour and 30000 a week, with a 304 and an error
-/// counting against it like anything else.
+/// counting against it like anything else. Omit [apiKey] (or pass an empty
+/// string) when the key is not this client's to hold, for example a proxy
+/// that adds it server-side; no `Authorization` header is sent in that case.
 ///
-/// **The API sends no CORS headers**, so this client cannot reach it from a
-/// Flutter web build. Call it from iOS, Android, desktop or a server.
+/// **The API sends no CORS headers**, so this client cannot reach it
+/// directly from a Flutter web build. Call it from iOS, Android, desktop or
+/// a server, or point [baseUrl] at a proxy that adds CORS headers and the
+/// key.
 ///
 /// See https://match13.com/docs/api for the endpoint documentation.
 class Match13Client {
   Match13Client({
-    required String apiKey,
+    String? apiKey,
+    String baseUrl = defaultBaseUrl,
     http.Client? httpClient,
     int maxAttempts = 3,
     Future<void> Function(Duration)? sleep,
-  })  : _apiKey = apiKey,
-        _httpClient = httpClient ?? http.Client(),
-        _maxAttempts = maxAttempts < 1 ? 1 : maxAttempts,
-        _sleep = sleep ?? Future<void>.delayed;
+  }) : _apiKey = apiKey,
+       _baseUrl = baseUrl.endsWith('/')
+           ? baseUrl.substring(0, baseUrl.length - 1)
+           : baseUrl,
+       _httpClient = httpClient ?? http.Client(),
+       _maxAttempts = maxAttempts < 1 ? 1 : maxAttempts,
+       _sleep = sleep ?? Future<void>.delayed;
 
-  static const String baseUrl = 'https://actions.match13.com';
+  /// The match13 API's own host. The default for [baseUrl], and the right
+  /// value everywhere except behind a proxy that holds the key server-side
+  /// (for example a Flutter web build, which cannot send the key itself
+  /// because the API sends no CORS headers).
+  static const String defaultBaseUrl = 'https://actions.match13.com';
 
-  final String _apiKey;
+  final String? _apiKey;
+  final String _baseUrl;
   final http.Client _httpClient;
 
   /// How many times a single request is attempted before giving up. A 429 and
@@ -143,10 +156,7 @@ class Match13Client {
 
   /// `GET /v1/matches/{matchKey}` -- one match with its forecast, or null
   /// when match13 carries no such match.
-  Future<Match13Match?> getMatch(
-    String matchKey, {
-    Match13Scope? scope,
-  }) async {
+  Future<Match13Match?> getMatch(String matchKey, {Match13Scope? scope}) async {
     final body = await _get('/v1/matches/$matchKey', scope: scope);
     return body == null ? null : Match13Match.fromJson(_object(body));
   }
@@ -223,9 +233,8 @@ class Match13Client {
       if (scope != null) 'scope': scope.wireName,
       ...?queryParameters,
     };
-    final uri = Uri.parse('$baseUrl$path').replace(
-      queryParameters: query.isEmpty ? null : query,
-    );
+    final uri = Uri.parse('$_baseUrl$path')
+        .replace(queryParameters: query.isEmpty ? null : query);
 
     for (var attempt = 1; attempt <= _maxAttempts; attempt++) {
       http.Response response;
@@ -233,7 +242,8 @@ class Match13Client {
         response = await _httpClient.get(
           uri,
           headers: <String, String>{
-            'Authorization': 'Bearer $_apiKey',
+            if (_apiKey != null && _apiKey.isNotEmpty)
+              'Authorization': 'Bearer $_apiKey',
             'Accept': 'application/json',
           },
         );
