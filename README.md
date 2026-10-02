@@ -1,3 +1,5 @@
+> **Moved.** This package now lives in [Project516/dart-packages](https://github.com/Project516/dart-packages/tree/main/packages/match13_client), tagged `match13_client-vX.Y.Z`. This repo is archived and gets no further updates.
+
 # match13_client
 
 A typed Dart client for the [match13](https://match13.com) read API: xP team
