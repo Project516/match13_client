@@ -1,4 +1,4 @@
-> **Moved.** This package now lives in [Project516/dart-packages](https://github.com/Project516/dart-packages/tree/main/packages/match13_client), tagged per release, currently `match13_client-v0.2.0`. This repo is archived and gets no further updates.
+> **Moved.** This package now lives in [Project516/dart-packages](https://github.com/Project516/dart-packages/tree/main/packages/match13_client), tagged per release. This repo is archived and gets no further updates.
 
 # match13_client
 
